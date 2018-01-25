@@ -26,7 +26,25 @@ namespace Server
             myList.Start();
 
             richTextBox1.AppendText("The server is running at port 8001...\n");
-            richTextBox1.AppendText("The local End point is: " + myList.LocalEndpoint);
+            richTextBox1.AppendText("The local End point is: " + myList.LocalEndpoint + "\n");
+            richTextBox1.AppendText("Waiting for a connection.....\n");
+
+            Socket s = myList.AcceptSocket();
+            richTextBox1.AppendText("Connection accepted from " + s.RemoteEndPoint + "\n");
+
+            byte[] b = new byte[100];
+            int k = s.Receive(b);
+
+            richTextBox1.AppendText("Received...\n");
+            for (int i = 0; i < k; i++)
+            {
+                richTextBox1.AppendText(Convert.ToChar(b[i]).ToString());
+            }
+
+            richTextBox1.AppendText("\n");
+
+      
+
 
         }
 
