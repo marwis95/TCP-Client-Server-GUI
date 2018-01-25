@@ -37,6 +37,7 @@
             this.txtPort = new System.Windows.Forms.TextBox();
             this.cmdWyslij = new System.Windows.Forms.Button();
             this.polaczenie = new System.ComponentModel.BackgroundWorker();
+            this.odbieranie = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // txtOdbieranie
@@ -55,6 +56,7 @@
             this.txtWysylanie.Size = new System.Drawing.Size(303, 72);
             this.txtWysylanie.TabIndex = 1;
             this.txtWysylanie.Text = "";
+            this.txtWysylanie.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtWysylanie_KeyPress);
             // 
             // txtLog
             // 
@@ -91,6 +93,7 @@
             this.cmdSluchaj.TabIndex = 5;
             this.cmdSluchaj.Text = "Czekaj na połączenie";
             this.cmdSluchaj.UseVisualStyleBackColor = true;
+            this.cmdSluchaj.Click += new System.EventHandler(this.cmdSluchaj_Click);
             // 
             // txtPort
             // 
@@ -111,6 +114,16 @@
             this.cmdWyslij.UseVisualStyleBackColor = true;
             this.cmdWyslij.Click += new System.EventHandler(this.cmdWyslij_Click);
             // 
+            // polaczenie
+            // 
+            this.polaczenie.WorkerSupportsCancellation = true;
+            this.polaczenie.DoWork += new System.ComponentModel.DoWorkEventHandler(this.polaczenie_DoWork);
+            // 
+            // odbieranie
+            // 
+            this.odbieranie.WorkerSupportsCancellation = true;
+            this.odbieranie.DoWork += new System.ComponentModel.DoWorkEventHandler(this.odbieranie_DoWork);
+            // 
             // frmServer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -128,6 +141,7 @@
             this.MaximizeBox = false;
             this.Name = "frmServer";
             this.Text = "Server";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmServer_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -144,6 +158,7 @@
         private System.Windows.Forms.TextBox txtPort;
         private System.Windows.Forms.Button cmdWyslij;
         private System.ComponentModel.BackgroundWorker polaczenie;
+        private System.ComponentModel.BackgroundWorker odbieranie;
     }
 }
 
