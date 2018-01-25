@@ -43,8 +43,9 @@ namespace Server
 
             richTextBox1.AppendText("\n");
 
-      
 
+            //s.Close();
+            //myList.Stop();
 
         }
 
